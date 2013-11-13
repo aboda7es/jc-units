@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import json
-import re
+# import json
+# import re
 import logging
 from urllib import urlopen, urlencode
 
@@ -11,7 +11,7 @@ LOG = logging.getLogger(__name__)
 api = 'http://www.calcatraz.com/calculator/api?'
 
 def convert(query):
-    query = 'c=' + urlencode(query)
+    query = urlencode({'c' : query})
     url = api + query
     LOG.debug('opening url: %s', url)
     text = urlopen(url).read().strip()
