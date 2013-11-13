@@ -99,7 +99,7 @@ Workflow().tell('convert_simple', '{query}')</string>
 				<string>from alfred_convert import Workflow
 Workflow().tell('convert', '{query}')</string>
 				<key>subtext</key>
-				<string>Enter a string like '1cm + 1in &gt; cm' or '1in * 1mm'</string>
+				<string>Enter a string like '1cm + 1in to cm''</string>
 				<key>title</key>
 				<string>Open unit conversion</string>
 				<key>type</key>
@@ -116,7 +116,7 @@ Workflow().tell('convert', '{query}')</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Use Google's unofficial calculator API to convert physical values.</string>
+	<string>Use Calcatraz calculator API to convert physical values.</string>
 	<key>uidata</key>
 	<dict>
 		<key>61B5D348-BC31-4DC1-AA7F-C7E967F7A226</key>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=UTF-8
 
-import gconvert as convert
+import cconvert as convert
 import logging
 import re
 import jcalfred
@@ -45,11 +45,16 @@ class Workflow(jcalfred.Workflow):
             value = float(match.group('value'))
             src_units = match.group('src').lower()
             dst_units = match.group('dst').lower()
-            query = '%s%s>%s' % (value, src_units, dst_units)
+            query = '%s%s in %s' % (value, src_units, dst_units)
             return self._convert(query)
 
         return [jcalfred.Item('Waiting for input...')]
 
+
+    # While Calcatraz supports freeform conversions, it is not as extensive as google
+    # e.g. you cant multiply units. You can how ever add or substract unit or multiply
+    # a unit and a number.
+    #
     def tell_convert(self, query):
         '''Perform a general conversion query.'''
         LOG.debug('called with query "%s"', query)
@@ -57,13 +62,9 @@ class Workflow(jcalfred.Workflow):
         if len(query) == 0:
             return [
                 jcalfred.Item('Perform a freeform conversion'),
-                jcalfred.Item('Syntax', subtitle="'input > units'   (the '> "
-                              "units' is optional)"),
+            
                 jcalfred.Item('Examples', subtitle='1cm * 1in,   '
-                              '1cm * 1in > in^2,   1cm * 1in + 3in^2'),
-                jcalfred.Item('Remember, units matter', subtitle="If "
-                              "you multiple two lengths, you're going to get "
-                              "an area"),
+                              '1cm + 1in  in mm,   7cm * 3 in inches'),
             ]
         else:
             return self._convert(query)
